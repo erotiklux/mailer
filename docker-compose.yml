@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  # Base de données MongoDB
+  mongo:
+    image: mongo:latest
+    container_name: g4mailsender-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=g4mailsender
+
+  # Service de bot Telegram
+  bot:
+    build: .
+    container_name: g4mailsender-bot
+    restart: always
+    depends_on:
+      - mongo
+    env_file:
+      - .env
+    command: python bot.py
+
+  # Service de webhook pour les notifications de paiement
+  webhook:
+    build: .
+    container_name: g4mailsender-webhook
+    restart: always
+    depends_on:
+      - mongo
+      - bot
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    command: python webhook.py
+
+volumes:
+  mongo-data:

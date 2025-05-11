@@ -1,0 +1,48 @@
+# Fichiers Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Fichiers environnement
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Logs
+*.log
+
+# Base de données
+*.db
+*.sqlite3
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Docker
+.dockerignore
